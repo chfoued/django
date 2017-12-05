@@ -1,5 +1,5 @@
 from django.db import models
-from djnago.forms import ModelForm
+from django.forms import ModelForm
 
 # Create your models here.
 
@@ -16,7 +16,7 @@ class Produit(models.Model):
 class Operation(models.Model):
 
     produit = models.ForeignKey(Produit)
-    date = models.DateField() 
+    date = models.DateTimeField() 
     poids = models.FloatField(default=0)
     nbr_box = models.IntegerField(default=0)
     client = models.CharField(max_length=200)
@@ -39,4 +39,4 @@ class Operation(models.Model):
 class OperationForm(ModelForm):
     class Meta:
         model = Operation
-        fields = ['produit', 'poids', 'nbr_box', 'date', 'client']
+        fields = ['produit', 'poids', 'nbr_box', 'client']
