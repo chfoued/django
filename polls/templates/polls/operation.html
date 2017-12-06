@@ -1,5 +1,42 @@
-<form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit" />
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+
+<h1>Operations</h1>
+
+
+
+<table id="clients">
+	<thead>
+		<tr>
+			<th>Client</th>
+			<th>Date de l'opération</th>
+			<th>Produit</th>
+			<th>Poids</th>
+			<th>Nbr cartons</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		{% for operation in operation %}
+		<tr>
+			<td>{{operation.client}}</td>
+			<td>{{operation.date}}</td>
+			<td>{{operation.produit}}</td>
+			<td>{{operation.poids}}</td>
+			<td>{{operation.nbr_cartons}}</td>
+		</tr>
+		{% endfor %}	
+	</tbody>
+	<tfoot>
+		<th>Total</th>
+		<td>2300</td>
+	</tfoot>
+
+</table>
+
+
+<form method="POST">
+	{% csrf_token %}
+	{{form.as_p}}
+	<button type="submit">save</button>
 </form>
