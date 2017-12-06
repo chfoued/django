@@ -47,7 +47,8 @@ def operation(request):
 			nbr_cartons = formset.cleaned_data['nbr_cartons']
 			client = formset.cleaned_data['client']
 			operation = Operation(produit=produit, poids=poids, nbr_cartons=nbr_cartons, client=client, date=timezone.now())
-			return redirect('http://facebook.com')
+			operation.save()
+			return redirect('../produit/' + str(produit.pk))
 
 
 
