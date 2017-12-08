@@ -64,8 +64,3 @@ def etat_produit(request, produit_id):
 	}
 	return render(request, 'polls/etat.html', context)
 
-# def ajouter_produit(request):
-# 	form = ProduitForm
-# 	return render(request, 'polls/produit.html', {
-# 		'form' : form
-# 		})
