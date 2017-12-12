@@ -1,0 +1,45 @@
+{% extends "polls/base.html" %}
+{% block title %}
+<title>Operation</title>
+{% endblock %}
+
+{% block content %}
+<div class="row-5">
+	<div class="col-sm-2"></div>
+	<dic class="col-sm-8">	
+		<form method="POST">
+			{% csrf_token %}
+			{% load bootstrap %}
+			{{ form|bootstrap }}
+			<button class="btn btn-primary">submit</button>
+		</form>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Client</th>
+					<th>Date de l'opération</th>
+					<th>Produit</th>
+					<th>Poids</th>
+					<th>Nbr cartons</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for operation in operation %}
+				<tr>
+					<td>{{operation.client}}</td>
+					<td>{{operation.date}}</td>
+					<td>{{operation.produit}}</td>
+					<td>{{operation.poids}}</td>
+					<td>{{operation.nbr_cartons}}</td>
+				</tr>
+				{% endfor %}	
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}
+
+
+
