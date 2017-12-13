@@ -9,6 +9,29 @@
         <h1>Etat {{produit.name}}</h1>
         <p>{{produit.poids}}</p>
         <p>{{produit.nbr_cartons}}</p>
+        <table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Client</th>
+					<th>Date de l'opération</th>
+					<th>Produit</th>
+					<th>Poids</th>
+					<th>Nbr cartons</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for operation in operation %}
+				<tr>
+					<td>{{operation.client}}</td>
+					<td>{{operation.date}}</td>
+					<td>{{operation.produit}}</td>
+					<td>{{operation.poids}}</td>
+					<td>{{operation.nbr_cartons}}</td>
+				</tr>
+				{% endfor %}	
+			</tbody>
+		</table>
     </div>
 </div>
 

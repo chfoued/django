@@ -93,8 +93,10 @@ def export_pdf(request, produit_id):
 
 def etat_produit (request, produit_id):
 	produit = get_object_or_404(Produit, pk=produit_id)
+	operation = Operation.objects.all().filter(produit=produit)
 	context ={
 		'produit': produit,
+		'operation': operation,
 	}
 	return render(request, 'polls/etat.html', context)
 
