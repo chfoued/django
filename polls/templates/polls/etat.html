@@ -1,4 +1,15 @@
+{% extends "polls/base.html" %}
+{% block title %}
+<title>Etat de {{produit.name}} </title>
+{% endblock %}
+{%block content %}
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <h1>Etat {{produit.name}}</h1>
+        <p>{{produit.poids}}</p>
+        <p>{{produit.nbr_cartons}}</p>
+    </div>
+</div>
 
-<H1>Etat {{produit.name}}</H1>
-<p>{{produit.Poids}}</p>
-<p>{{produit.nbr_cartons}}</p>
+{% endblock %}

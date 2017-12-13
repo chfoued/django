@@ -1,5 +1,5 @@
 h1{
-	color: green;
+	color: rgb(231, 73, 24);
 }
 
 #clients {
@@ -177,4 +177,14 @@ footer .glyphicon {
 	font-size: 20px;
 	margin-bottom: 20px;
 	color: #f4511e;
+}
+
+.btn-primary {
+	background-color: #f4511e;
+	border-color: #f4511e
+}
+
+.btn-primary:hover {
+	background-color: #e72e00;
+	border-color: #e72e00;
 }

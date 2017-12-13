@@ -57,7 +57,7 @@ def operation(request):
 		'form' : form_class,
 		})
 
-def etat_produit(request, produit_id):
+def export_pdf(request, produit_id):
 	response = HttpResponse(content_type='application/pdf')
 	response['Content-Disposition'] = 'attachement; filename="test.pdf"'
 	produit = get_object_or_404(Produit, pk= produit_id)
@@ -90,4 +90,12 @@ def etat_produit(request, produit_id):
 
 
 	return response
+
+def etat_produit (request, produit_id):
+	produit = get_object_or_404(Produit, pk=produit_id)
+	context ={
+		'produit': produit,
+	}
+	return render(request, 'polls/etat.html', context)
+
 
