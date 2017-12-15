@@ -35,7 +35,7 @@ h1{
 
 
 .jumbotron {
-	background : url("../images/header.jpg") no-repeat;
+	background : url("../polls/images/header.jpg") no-repeat;
 	background-color: #f4511e;
 	color: #ffffff;
 	padding: 100px 25px; 
@@ -187,4 +187,12 @@ footer .glyphicon {
 .btn-primary:hover {
 	background-color: #e72e00;
 	border-color: #e72e00;
+}
+
+.detail {
+	background: #ddd;
+	box-shadow: 8px 8px 8px 0px #d1cdcd;
+}
+.detail p{
+	font-size: 20px;
 }

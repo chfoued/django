@@ -2,13 +2,18 @@
 {% block title %}
 <title>Etat de {{produit.name}} </title>
 {% endblock %}
+{% block title2 %}
+<h1>Etat {{produit.name}}</h1>
+{% endblock %}
 {%block content %}
 <div class="row">
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
-        <h1>Etat {{produit.name}}</h1>
-        <p>{{produit.poids}}</p>
-        <p>{{produit.nbr_cartons}}</p>
+    	<div class="detail">
+        	<h1>Etat {{produit.name}}</h1>
+        	<p>Poids: {{produit.Poids}}</p>
+        	<p>Nbr cartons: {{produit.nbr_cartons}}</p>
+        </div>
         <table class="table table-striped">
 			<thead>
 				<tr>
