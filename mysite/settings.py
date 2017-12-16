@@ -71,6 +71,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
+TEMPLATE_CONTEXT_PROCESSORS =(
+    'django.core.context_processors.request',
+    )
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases

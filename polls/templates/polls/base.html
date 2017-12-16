@@ -21,8 +21,8 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="../produit/3">ABOUT</a></li>
-				<li><a href="#services">SERVICES</a></li>
+				<li class="{% ifequal request.path '/polls/operation/' %}active {% endifequal %} "><a href="/polls/operation">Ajouter Operation</a></li>
+				<li class="{% ifequal request.path '/polls/stock/' %}active {% endifequal %}"><a href="/polls/stock">Etat Stock</a></li>
 				<li><a href="#portfolio">PORTFOLIO</a></li>
 				<li><a href="#pricing">PRICING</a></li>
 				<li><a href="#contact">CONTACT</a></li>

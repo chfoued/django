@@ -99,5 +99,11 @@ def etat_produit (request, produit_id):
 		'operation': operation,
 	}
 	return render(request, 'polls/etat.html', context)
+def stock(request):
+	produit = Produit.objects.order_by('-name')
+
+	return render(request, 'polls/stock.html', {
+		'produit' : produit,
+		})
 
 

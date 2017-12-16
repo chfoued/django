@@ -1,0 +1,20 @@
+{% extends "polls/base.html" %}
+{% block title %}
+<title>Liste des produits</title>
+{% endblock %}
+{% block title2 %}
+<h1>Liste des produits</h1>
+{% endblock %}
+{% block content %}
+{% for p in produit %}
+<div class="row">
+	<div class="col-sm-2"></div>
+	<div class="col-sm-8">
+		<p> {{p.name}} </p>
+	</div>
+	<div class="col-sm-2">
+		<a href="/polls/produit/{{p.pk}}">link</a>
+	</div>
+</div>
+{% endfor %}
+{% endblock %}
