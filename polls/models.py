@@ -6,27 +6,8 @@ from django.forms import ModelForm
 
 # Create your models here.
 
-class Question(models.Model):
 
-	question_text = models.CharField(max_length=200)
-	pub_date = models.DateTimeField('date published')
-
-	def __str__(self):
-		return self.question_text
-
-	def was_published_recently(self):
-		return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
-
-
-class Choice(models.Model):
-
-	question = models.ForeignKey(Question, on_delete=models.CASCADE)
-	choice_text = models.CharField(max_length=200)
-	votes = models.IntegerField(default=0)
-
-	def __str__(self):
-		return self.choice_text
-
+########################################################################
 
 class Produit(models.Model):
 
@@ -36,21 +17,33 @@ class Produit(models.Model):
 	def __str__(self):
 		return self.name
 
+########################################################################
 
+class Client(models.Model):
+
+	name = models.CharField(max_length=200)
+	credit = models.IntegerField()
+
+	def __str__(self):
+		return self.name
+
+########################################################################
 
 class Operation(models.Model):
 
 	produit = models.ForeignKey(Produit)
 	poids = models.FloatField(default=0)
 	nbr_cartons = models.IntegerField(default=0)
-	client = models.CharField(max_length=200)
+	client = models.ForeignKey(Client)
 	date = models.DateField("Date de l'opération")
 
 	def save(self, *args, **kwargs):
 		new_produit = Produit.objects.get(pk= self.produit.pk)
-
+		new_client = Client.objects.get(pk=self.client.pk)
+		new_client.credit += self.poids
 		new_produit.Poids -= self.poids
 		new_produit.nbr_cartons -= self.nbr_cartons
+		new_client.save()
 		new_produit.save()
 		super(Operation, self).save(*args, **kwargs)
 
@@ -62,11 +55,10 @@ class Operation(models.Model):
 		produit.save()
 		super(Operation, self).delete(*args, **kwargs)
 
+########################################################################
 
-class Client(models.Model):
 
-	name = models.CharField(max_length=200)
-	credit = models.IntegerField()
+
 
 
 class ProduitForm(ModelForm):

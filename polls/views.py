@@ -4,40 +4,13 @@ from django.urls import reverse
 from django.shortcuts import redirect
 from django.utils import timezone
 
-from .models import Choice, Question, Operation, Produit, ProduitForm, OperationForm 
+from .models import  Operation, Produit, ProduitForm, OperationForm 
 
 from reportlab.pdfgen import canvas
 from io import BytesIO
 
-def index(request):
-	latest_question_list = Question.objects.order_by('-pub_date')[:5]
-	context = {
-		'latest_question_list': latest_question_list,
-	}
-	return render(request, 'polls/index.html', context)
 
-def detail(request, question_id):
-	question = get_object_or_404(Question, pk=question_id)
-	return render(request, 'polls/detail.html', {'question': question})
-
-def results(request, question_id):
-	question = get_object_or_404(Question, pk=question_id)
-	return render(request, 'polls/results.html', {'question': question})
-
-def vote(request, question_id):
-	question = get_object_or_404(Question, pk=question_id)
-	try:
-		selected_choice = question.choice_set.get(pk=request.POST['choice'])
-	except (KeyError, Choice.DoesNotExist):
-		return render(request, 'polls/detail.html', {
-			'question': question, 
-			'error_message' : "you didn't select a choice.",
-			})
-	else:
-		selected_choice.votes += 1
-		selected_choice.save()
-		return HttpResponseRedirect(reverse('polls:results', args=(question_id)))
-
+#############################################################
 def operation(request):
 	operation = Operation.objects.order_by('-date')[:20]
 	form_class = OperationForm
@@ -56,7 +29,7 @@ def operation(request):
 		'operation' : operation,
 		'form' : form_class,
 		})
-
+#############################################################
 def export_pdf(request, produit_id):
 	response = HttpResponse(content_type='application/pdf')
 	response['Content-Disposition'] = 'attachement; filename="test.pdf"'
@@ -90,7 +63,7 @@ def export_pdf(request, produit_id):
 
 
 	return response
-
+#############################################################
 def etat_produit (request, produit_id):
 	produit = get_object_or_404(Produit, pk=produit_id)
 	operation = Operation.objects.all().filter(produit=produit)
@@ -99,11 +72,12 @@ def etat_produit (request, produit_id):
 		'operation': operation,
 	}
 	return render(request, 'polls/etat.html', context)
+#############################################################
 def stock(request):
 	produit = Produit.objects.order_by('-name')
 
 	return render(request, 'polls/stock.html', {
 		'produit' : produit,
 		})
-
+#############################################################
 
